@@ -12,7 +12,6 @@ workflows:
   Welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
       build:
         docker:
           - image: alpine:3.7
