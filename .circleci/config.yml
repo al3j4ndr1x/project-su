@@ -7,11 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: The First Step
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
-      - run:
           name: Code Has Arrived
           command: |
             ls -al
@@ -20,6 +15,8 @@ jobs:
           name: Running in a Unique Container
           command: |
             node -v
+      - run: npm install
+      - run: npm test
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
