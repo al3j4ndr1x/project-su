@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/al3j4ndr1x/project-su/tree/master.svg?style=svg)](https://circleci.com/gh/al3j4ndr1x/project-su/tree/master)
+
 # Landing page - Project Su
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
