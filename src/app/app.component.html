@@ -1,9 +1,37 @@
-<section>
-  <article>
+<nb-layout>
+  <nb-layout-header fixed>Project SU</nb-layout-header>
+
+  <nb-layout-column>
     <h1>Welcome to {{title}}!</h1>
-    <h2>Angular PWA, Jest, Circle CI & Firebase Hosting</h2>
-    <p>🔥🔥🔥</p>
-  </article>
-</section>
+    <h5>Coming Soon!</h5>
+    <p>We're working on it and we'll release it as soon as possible. 😃 </p>
+    <p><small><i>Developed using Angular PWA, Jest, Circle CI & Firebase Hosting.</i></small> 🔥</p>
+    <div class="items-rows">
+      <input type="email" nbInput shape="semi-round" fieldSize="large" placeholder="Enter your email address...">
+      <button nbButton hero status="primary" shape="semi-round" size="large">Get early access</button>
+    </div>
+
+    <!-- <nb-card accent="primary">
+      <nb-card-header>💖 Get early access!</nb-card-header>
+      <nb-card-body class="items-rows">
+        <input type="email" nbInput shape="semi-round" placeholder="Enter your email address...">
+        <button nbButton hero status="primary" shape="semi-round">Sign up</button>
+      </nb-card-body>
+      <nb-card-footer>Technology for everyone</nb-card-footer>
+    </nb-card> -->
+  </nb-layout-column>
+
+  <!-- <nb-layout-column>
+    <section>
+      <article>
+        <h1>Welcome to {{title}}!</h1>
+        <h2>Angular PWA, Jest, Circle CI & Firebase Hosting</h2>
+        <p>🔥🔥🔥</p>
+      </article>
+    </section>
+  </nb-layout-column> -->
+
+  <nb-layout-footer>Copyright &copy; 2019. Created with ❤️ by al3j4ndr1x 🎸</nb-layout-footer>
+</nb-layout>
 
 <router-outlet></router-outlet>
