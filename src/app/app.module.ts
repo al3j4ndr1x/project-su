@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbInputModule, NbCardModule, } from '@nebular/theme';
+import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbInputModule, NbCardModule, NbIconModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -15,14 +16,16 @@ import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbInput
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // this will enable the default theme, you can change this by passing 
+    // this will enable the default theme, you can change this by passing
     // `{ name: 'dark' }` to enable the dark theme
     NbThemeModule.forRoot({ name: 'cosmic' }),
     NbLayoutModule,
     NbSidebarModule.forRoot(), //if this is your app.module
     NbButtonModule,
     NbInputModule,
-    NbCardModule,    
+    NbCardModule,
+    NbEvaIconsModule,
+    NbIconModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
