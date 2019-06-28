@@ -179,7 +179,8 @@ The following is the list of supported scopes:
 
 - **core**:
 - **packaging**:
-- **changelog**: used for updating the release notes in CHANGELOG.md
+- **changelog**: Used for updating the release notes in CHANGELOG.md
+- **contributing**: Used for updating the guidelines in CONTRIBUTING.md
 
 #### Subject
 
