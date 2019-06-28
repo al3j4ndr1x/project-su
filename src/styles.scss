@@ -1,0 +1,19 @@
+// this is our just created themes.scss file, make sure the path to the file is correct
+@import 'themes';
+
+// framework component styles
+@import '~@nebular/theme/styles/globals';
+
+//@import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
+
+// install the framework styles
+@include nb-install() {
+  @include nb-theme-global();
+};
+
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+}

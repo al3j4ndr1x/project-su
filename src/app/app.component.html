@@ -1,0 +1,39 @@
+<nb-layout>
+  <nb-layout-header fixed>Project SU</nb-layout-header>
+
+  <nb-layout-column>
+    <h6>Welcome to {{title}}!</h6>
+    <h1>The future is: Now! 👨‍💻</h1>
+    <p>We're working on it and we'll release it as soon as possible. 😃</p>
+    <p>If you'd like to be one of the first to use it, register to get early access.</p>
+    <!-- <p><small><i>Developed using Angular PWA, Jest, Circle CI & Firebase Hosting.</i></small> 🔥</p> -->
+    <div class="items-rows">
+      <input type="email" nbInput shape="semi-round" fieldSize="large" placeholder="Enter your email address...">
+      <button nbButton hero status="primary" shape="semi-round" size="large">Get early access</button>
+    </div>
+
+    <!-- <nb-card accent="primary">
+      <nb-card-header>💖 Get early access!</nb-card-header>
+      <nb-card-body class="items-rows">
+        <input type="email" nbInput shape="semi-round" placeholder="Enter your email address...">
+        <button nbButton hero status="primary" shape="semi-round">Sign up</button>
+      </nb-card-body>
+      <nb-card-footer>Technology for everyone</nb-card-footer>
+    </nb-card> -->
+  </nb-layout-column>
+
+  <!-- <nb-layout-column>
+    <section>
+      <article>
+        <h1>Welcome to {{title}}!</h1>
+        <h2>Angular PWA, Jest, Circle CI & Firebase Hosting</h2>
+        <p>🔥🔥🔥</p>
+      </article>
+    </section>
+  </nb-layout-column> -->
+
+   <nb-layout-footer>Copyright &copy; 2019 Created with ❤️ by al3j4ndr1x &nbsp; <a href="https://github.com/al3j4ndr1x" target="_blank"><nb-icon icon="github" nbButton></nb-icon></a>
+  </nb-layout-footer>
+</nb-layout>
+
+<router-outlet></router-outlet>
