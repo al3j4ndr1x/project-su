@@ -121,10 +121,11 @@ If the branch does not exist yet (check with the Lead), create the branch locall
   ```
 - **Incorporating a finished feature on develop**
 
-  Finished features may be merged into the develop branch to definitely add them to the upcoming release:
+  Finished features may be merged into the `develop` branch to definitely add them to the upcoming release:
   ```bash
   git checkout develop
-  git merge --no-ff myfeature
+  git rebase myfeature
+  # git merge --no-ff myfeature
   git push origin develop
   git branch --delete myfeature
   git push origin --delete myfeature
@@ -134,9 +135,9 @@ If the branch does not exist yet (check with the Lead), create the branch locall
 
 Release branches support preparation of a new production release. 
 
-Release branches are created from the develop branch. The state of develop is ready for the "next release". We branch off and give the release branch a name reflecting the new version number:
+Release branches are created from the `develop` branch. The state of `develop` is ready for the "next release". We branch off and give the release branch a name reflecting the new version number:
 
-The key moment to branch off a new release branch from develop is when develop (almost) reflects the desired state of the new release. At least all features that are targeted for the release-to-be-built must be merged in to develop at this point in time. All features targeted at future releases may not—they must wait until after the release branch is branched off.
+The key moment to branch off a new release branch from `develop` is when `develop` (almost) reflects the desired state of the new release. At least all features that are targeted for the release-to-be-built must be merged in to `develop` at this point in time. All features targeted at future releases may not—they must wait until after the release branch is branched off.
 
 When the state of the release branch is ready to become a real release, some actions need to be carried out. First, the release branch is merged into master (since every commit on master is a new release by definition). Next, that commit on master must be tagged for easy future reference to this historical version. Finally, the changes made on the release branch need to be merged back into develop, so that future releases also contain these bug fixes.
 
