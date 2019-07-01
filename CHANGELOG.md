@@ -1,23 +1,25 @@
 <a name="0.1.0-alpha.0"></a>
-# [0.1.0-alpha.0](#) (2019-06-23)
+# [0.1.0-alpha.0](#) (2019-07-01)
 
 
-### Bug Fixes
-
-* **mainpage:** builder workspace should use nodejs v10.16.0 ([#5](https://github.com/al3j4ndr1x/project-su/issues/4)) ([cccccc](https://github.com/al3j4ndr1x/project-su/commit/ffffff))
-* **core:** temporarily remove tag ([#1](https://github.com/al3j4ndr1x/project-su/issues/1)) ([111111](https://github.com/al3j4ndr1x/project-su/commit/bbbbbb)), closes [#3](https://github.com/project-su/issues/4)
-* **documentation:** Remove ([#2](https://github.com/al3j4ndr1x/project-su/issues/2)) ([2222222](https://github.com/al3j4ndr1x/project-su/commit/aaaaaaa))
+<!-- ### Bug Fixes -->
 
 ### build
 
-### Dependency updates
+* **core:** Set project version to release 0.1.0-alpha.0
+
+<!-- ### Dependency updates -->
 
 ### Features
 
+* **documentation:** Edit contribution guidelines ([2235b51](https://github.com/al3j4ndr1x/project-su/commit/2235b51)), [dc83eec](https://github.com/al3j4ndr1x/project-su/commit/dc83eec)), closes ([#22](https://github.com/al3j4ndr1x/project-su/issues/22))
+
 ### Code Refactoring
 
-### Performance Improvements
+- **refactor**: Add a new filename in .gitignore ([c2cb97b](https://github.com/al3j4ndr1x/project-su/commit/c2cb97b))
+
+<!-- ### Performance Improvements
 
 ### DEPRECATIONS
 
-### BREAKING CHANGES
+### BREAKING CHANGES -->
