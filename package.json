@@ -1,7 +1,15 @@
 {
   "name": "project-su",
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": -10
+      }
+    }
   },
   "version": "0.1.0-alpha.0",
   "scripts": {
