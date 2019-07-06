@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/al3j4ndr1x/project-su/tree/master.svg?style=svg)](https://circleci.com/gh/al3j4ndr1x/project-su/tree/master)
-
+[![Coverage Status](https://coveralls.io/repos/github/al3j4ndr1x/project-su/badge.svg?branch=master)](https://coveralls.io/github/al3j4ndr1x/project-su?branch=master)
 # Landing page - Project Su
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
