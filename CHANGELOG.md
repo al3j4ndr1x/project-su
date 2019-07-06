@@ -1,3 +1,10 @@
+<a name="0.1.0-alpha.2"></a>
+# [0.1.0-alpha.2](#) (2019-07-06)
+
+### build
+
+* **ci:** Minor changes in CircleCI config.
+
 <a name="0.1.0-alpha.1"></a>
 # [0.1.0-alpha.1](#) (2019-07-06)
 
