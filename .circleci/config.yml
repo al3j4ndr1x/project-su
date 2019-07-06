@@ -34,6 +34,8 @@ jobs: # a collection of steps
       - run:
           name: "Run Jest and Collect Coverage Reports"
           command: npm run test:cov
+      - store_test_results:
+          path: coverage
       - store_artifacts:
           path: coverage
 
@@ -43,6 +45,10 @@ workflows:
   build_and_test:
     jobs:
       - build
+          filters:  # using regex filters requires the entire branch to match
+            branches:
+              only:  # only branches matching the below regex filters will run
+                - master
       #- test:
       #    requires:
       #      - build
