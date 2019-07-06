@@ -50,3 +50,6 @@ SEMANTIC-VERSIONING.md
 
 # git flow Workflow
 WORKFLOW.md
+
+# Coveralls config
+.coveralls.yml
