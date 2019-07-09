@@ -56,3 +56,10 @@ WORKFLOW.md
 
 # Model
 /model
+
+# Cypress v3.3.2
+/cypress/integration/examples
+/cypress/fixtures/example.json
+/cypress/videos
+/cypress/screenshots
+cypress.env.json
