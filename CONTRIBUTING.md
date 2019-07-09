@@ -311,17 +311,17 @@ If the commit reverts a previous commit, it should begin with `revert: `, follow
 
 Must be one of the following:
 
-- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) [2]
-- **ci**: Changes to our CI configuration files and - scripts (example scopes: Circle, BrowserStack, SauceLabs) [2]
-- **docs**: Documentation only changes
-- **feat**: A new feature [1]
-- **fix**: A bug fix [1]
-- **perf**: A code change that improves performance
-- **refactor**: A code change that neither fixes a bug nor adds a feature
-* **release**: A release commit. Must only include version changes. [2]
-* **revert**: A git commit revert. The description must include the original commit message. [2]
-- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-- **test**: Adding missing tests or correcting existing tests
+- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm). [2]
+- **ci**: Changes to our CI configuration files and - scripts (example scopes: Circle, BrowserStack, SauceLabs). [2]
+- **docs**: Documentation only changes.
+- **feat**: A new feature. [1]
+- **fix**: A bug fix. [1]
+- **perf**: A code change that improves performance.
+- **refactor**: A code change that neither fixes a bug nor adds a feature.
+- **release**: A release commit. Must only include version changes. [2]
+- **revert**: A git commit revert. The description must include the original commit message. [2]
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc).
+- **test**: Adding missing tests or correcting existing tests.
 
 <sup>[1] This type MUST have a scope. See the next section for more information.</sup><br/>
 <sup>[2] This type MUST NOT have a scope. It only applies to general scripts and tooling.</sup>
@@ -335,6 +335,7 @@ The following is the list of supported scopes:
 - **packaging**: Used for packaging.
 - **changelog**: Used for updating the release notes in CHANGELOG.md
 - **contributing**: Used for updating the guidelines in CONTRIBUTING.md
+- none/empty string: useful for `style`, `test` and `refactor` changes that are done across all packages (e.g. `style: add missing semicolons`) and for docs changes that are not related to a specific package (e.g. `docs: fix typo in tutorial`).
 
 #### Subject
 
