@@ -1,3 +1,19 @@
+<a name="0.1.0-alpha.3"></a>
+# [0.1.0-alpha.3](#) (2019-07-09)
+
+### build
+
+- **ci:** ([24becae](24becae)) Add into CircleCI configuration Cypress e2e run and recording. 
+- **ci:** ([e391cfa](e391cfa)) add Cypress and home e2e tests.
+
+### Code Refactoring
+
+- **refactor**: ([659ac50](659ac50)) add model folder to .gitignore.
+
+### Documentation
+
+- **docs(contributing)**: ([e417c3c](e417c3c)) add a empty option into scope section.
+
 <a name="0.1.0-alpha.2"></a>
 # [0.1.0-alpha.2](#) (2019-07-06)
 
