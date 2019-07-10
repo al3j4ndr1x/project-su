@@ -20,7 +20,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     // `{ name: 'dark' }` to enable the dark theme
     NbThemeModule.forRoot({ name: 'cosmic' }),
     NbLayoutModule,
-    NbSidebarModule.forRoot(), //if this is your app.module
+    NbSidebarModule.forRoot(), // if this is your app.module
     NbButtonModule,
     NbInputModule,
     NbCardModule,
