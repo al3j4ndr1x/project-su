@@ -12,7 +12,7 @@
     },
     "reporters": ["default", "jest-junit"]
   },
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot=true",
