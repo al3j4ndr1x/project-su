@@ -9,7 +9,8 @@
         "lines": 70,
         "statements": -10
       }
-    }
+    },
+    "reporters": ["default", "jest-junit"]
   },
   "version": "0.1.0-alpha.3",
   "scripts": {
@@ -28,7 +29,9 @@
     "cy:run:record": "cypress run --record --group all-tests",
     "cy:open": "cypress open",
     "test:watch": "ng test --watch",
-    "test:cov": "ng test --coverage --coverageReporters=text-lcov | coveralls"
+    "test:cov": "ng test --ci --runInBand --coverage --coverageReporters=text-lcov | coveralls",
+    "test:report": "ng test --ci --runInBand --reporters=default --reporters=jest-junit",
+    "test:summary": "ng test --coverage --coverageReporters=text-summary"
   },
   "author": "al3j4ndr1x",
   "license": "MIT",
@@ -70,6 +73,7 @@
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^24.8.0",
+    "jest-junit": "^6.4.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",

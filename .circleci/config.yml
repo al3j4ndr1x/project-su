@@ -31,7 +31,7 @@ jobs: # a collection of steps
           name: Installing Dependencies
           command: npm ci
       - run:
-          name: Verify Cypress
+          name: Verifying Cypress
           command: npm run cy:verify
       - save_cache: # special step to save the dependency cache
           key: v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
@@ -41,18 +41,22 @@ jobs: # a collection of steps
             - ~/.cache
       # start server before starting tests
       - run:
+          name: Starting server before starting tests
           command: npm run start
           background: true
       - run:
           name: Running and recording Cypress end-to-end tests
           command: npm run e2e:record
       - run:
-          name: Running Jest and Collect Coverage Reports
+          name: Running Jest and Collect Coverage Reports with JUnit as reporter
           command: npm run test:cov
-      #- store_test_results:
-      #    path: coverage
-      #- store_artifacts:
-      #    path: coverage
+          environment:
+            JEST_JUNIT_OUTPUT: "tests-results/junit/junit.xml"
+      - store_test_results:
+          path: tests-results
+      - store_artifacts:
+          path: tests-results/junit/junit.xml
+          destination: jest
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:

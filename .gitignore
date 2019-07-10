@@ -63,3 +63,8 @@ WORKFLOW.md
 /cypress/videos
 /cypress/screenshots
 cypress.env.json
+
+# Jest JUnit reporter
+junit.xml
+/reports
+/tests-results
