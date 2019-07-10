@@ -1,3 +1,10 @@
+<a name="0.1.0-alpha.4"></a>
+# [0.1.0-alpha.4](#) (2019-07-10)
+
+### build
+
+- **ci:** ([0f0428a](0f0428a)) Collect test metadata reports with jest and junit.
+
 <a name="0.1.0-alpha.3"></a>
 # [0.1.0-alpha.3](#) (2019-07-09)
 
