@@ -57,9 +57,10 @@ jobs: # a collection of steps
           path: reports
       - store_artifacts:
           path: reports/junit
+          destination: jest
       # Store coverage artifacts
       - store_artifacts:
-          path: coverage
+          path: ./coverage/lcov-report/
           destination: coverage
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
