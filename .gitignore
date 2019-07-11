@@ -67,5 +67,5 @@ cypress.env.json
 # Jest JUnit reporter
 junit.xml
 /reports
-/tests-results
+/test-results
 ./test-results
