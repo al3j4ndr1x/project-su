@@ -50,18 +50,15 @@ jobs: # a collection of steps
           command: npm run e2e:record
       - run:
           name: Running Jest and Collect Coverage Reports with JUnit as reporter
-          command: npm run test:cov
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/jest-junit.xml"
+          command: |
+            mkdir -p ./test-results/junit
+            npm run test:cov
+          #environment:
+          #  JEST_JUNIT_OUTPUT: "reports/junit/jest-junit.xml"
       - store_test_results:
-          path: reports
+          path: ./test-results
       - store_artifacts:
-          path: reports/junit
-          destination: jest
-      # Store coverage artifacts
-      - store_artifacts:
-          path: ./coverage/lcov-report/
-          destination: coverage
+          path: ./test-results/junit
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:

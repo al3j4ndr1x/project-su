@@ -16,6 +16,9 @@
       "jest-junit"
     ]
   },
+  "jest-junit":{
+    "output": "./test-results/junit/jest-junit.xml"
+  },
   "version": "0.1.0-alpha.5",
   "scripts": {
     "ng": "ng",
