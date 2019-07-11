@@ -68,3 +68,4 @@ cypress.env.json
 junit.xml
 /reports
 /tests-results
+./test-results

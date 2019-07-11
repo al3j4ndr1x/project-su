@@ -7,6 +7,7 @@ jobs: # a collection of steps
         environment:
           ## this enables colors in the output
           TERM: xterm
+    working_directory: ~/repo
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
@@ -49,14 +50,15 @@ jobs: # a collection of steps
           command: npm run e2e:record
       - run:
           name: Running Jest and Collect Coverage Reports with JUnit as reporter
-          command: npm run test:cov
-          environment:
-            JEST_JUNIT_OUTPUT: "tests-results/junit/junit.xml"
+          command: |
+            mkdir -p ./test-results/junit
+            npm run test:cov
+          #environment:
+          #  JEST_JUNIT_OUTPUT: "reports/junit/jest-junit.xml"
       - store_test_results:
-          path: tests-results
+          path: ./test-results
       - store_artifacts:
-          path: tests-results/junit/junit.xml
-          destination: jest
+          path: ./test-results/junit
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:

@@ -2,6 +2,7 @@
   "name": "project-su",
   "jest": {
     "verbose": true,
+    "collectCoverage": true,
     "coverageThreshold": {
       "global": {
         "branches": 70,
@@ -10,9 +11,15 @@
         "statements": -10
       }
     },
-    "reporters": ["default", "jest-junit"]
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
   },
-  "version": "0.1.0-alpha.4",
+  "jest-junit":{
+    "output": "./test-results/junit/jest-junit.xml"
+  },
+  "version": "0.1.0-alpha.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot=true",
@@ -29,7 +36,7 @@
     "cy:run:record": "cypress run --record --group all-tests",
     "cy:open": "cypress open",
     "test:watch": "ng test --watch",
-    "test:cov": "ng test --ci --runInBand --coverage --coverageReporters=text-lcov | coveralls",
+    "test:cov": "ng test --ci --runInBand --reporters=default --reporters=jest-junit --coverage --coverageReporters=text-lcov | coveralls",
     "test:report": "ng test --ci --runInBand --reporters=default --reporters=jest-junit",
     "test:summary": "ng test --coverage --coverageReporters=text-summary"
   },
@@ -37,39 +44,39 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@angular/animations": "^8.0.1",
-    "@angular/cdk": "^8.0.1",
-    "@angular/common": "~8.0.1",
-    "@angular/compiler": "~8.0.1",
-    "@angular/core": "~8.0.1",
-    "@angular/forms": "~8.0.1",
-    "@angular/platform-browser": "~8.0.1",
-    "@angular/platform-browser-dynamic": "~8.0.1",
-    "@angular/pwa": "^0.800.3",
-    "@angular/router": "~8.0.1",
-    "@angular/service-worker": "~8.0.1",
-    "@nebular/eva-icons": "^4.1.0",
-    "@nebular/theme": "^4.1.0",
+    "@angular/animations": "^8.1.1",
+    "@angular/cdk": "^8.0.2",
+    "@angular/common": "^8.1.1",
+    "@angular/compiler": "^8.1.1",
+    "@angular/core": "^8.1.1",
+    "@angular/forms": "^8.1.1",
+    "@angular/platform-browser": "^8.1.1",
+    "@angular/platform-browser-dynamic": "^8.1.1",
+    "@angular/pwa": "^0.800.6",
+    "@angular/router": "^8.1.1",
+    "@angular/service-worker": "^8.1.1",
+    "@nebular/eva-icons": "^4.1.1",
+    "@nebular/theme": "^4.1.1",
     "eva-icons": "^1.1.1",
-    "rxjs": "~6.5.1",
+    "rxjs": "^6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-builders/jest": "^8.0.2",
-    "@angular-devkit/build-angular": "~0.800.0",
-    "@angular/cli": "~8.0.3",
-    "@angular/compiler-cli": "~8.0.1",
-    "@angular/language-service": "~8.0.1",
+    "@angular-builders/jest": "^8.0.4",
+    "@angular-devkit/build-angular": "^0.800.6",
+    "@angular/cli": "^8.1.1",
+    "@angular/compiler-cli": "^8.1.1",
+    "@angular/language-service": "^8.1.1",
     "@types/chance": "^1.0.5",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/jest": "^24.0.14",
+    "@types/jest": "^24.0.15",
     "@types/node": "~8.9.4",
     "chance": "^1.0.18",
     "codelyzer": "^5.0.0",
     "coveralls": "^3.0.4",
-    "cypress": "^3.3.2",
+    "cypress": "^3.4.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^24.8.0",
