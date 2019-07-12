@@ -1,3 +1,20 @@
+<a name="0.1.0-alpha.6"></a>
+# [0.1.0-alpha.6](#) (2019-07-11)
+
+### build
+
+- **ci:** ([e079664](e079664)) add start-server-and-test for e2e testing.
+- **build:** ([552baa5](552baa5)) upgrade dependencies and update npm config.
+- **core:** upgrade some npm packages.
+
+### Testing
+
+- **test:**: ([b495d1d](b495d1d)) add a test that will fail and code test instead of it.
+
+### Documentation
+
+- **readme:** ([86ed578](86ed578)) update readme.
+
 <a name="0.1.0-alpha.5"></a>
 # [0.1.0-alpha.5](#) (2019-07-10)
 
