@@ -39,7 +39,7 @@
     "test:cov": "ng test --ci --runInBand --reporters=default --reporters=jest-junit --coverage --coverageReporters=text-lcov | coveralls",
     "test:report": "ng test --ci --runInBand --reporters=default --reporters=jest-junit",
     "test:summary": "ng test --ci --runInBand",
-    "e2e:experiment": "start-server-and-test start http://localhost:4200 cy:run"
+    "e2e:experiment": "start-server-and-test 4200 cy:run"
   },
   "author": "al3j4ndr1x",
   "license": "MIT",
@@ -78,6 +78,7 @@
     "codelyzer": "^5.1.0",
     "coveralls": "^3.0.5",
     "cypress": "^3.4.0",
+    "husky": "^3.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^24.8.0",
@@ -88,5 +89,11 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "^3.4.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   }
 }
