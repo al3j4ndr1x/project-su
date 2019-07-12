@@ -38,16 +38,17 @@ jobs: # a collection of steps
           key: v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           # cache NPM modules and the folder with the Cypress binary
           paths:
+            - /node_modules
             - ~/.npm
             - ~/.cache
       # start server before starting tests
-      - run:
-          name: Starting server before starting tests
-          command: npm run start
-          background: true
+      #- run:
+      #    name: Starting server before starting tests
+      #    command: npm start # & wait-on http://localhost:4200
+      #    background: true
       - run:
           name: Running and recording Cypress end-to-end tests
-          command: npm run e2e:record
+          command: npm run e2e:ci
       - run:
           name: Running Jest and Collect Coverage Reports with JUnit as reporter
           command: |
@@ -59,6 +60,11 @@ jobs: # a collection of steps
           path: ./test-results
       - store_artifacts:
           path: ./test-results/junit
+      - run:
+          name: Finally this is the working directory
+          command: |
+            ls -al
+            echo '^^^That should look familiar^^^'
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:

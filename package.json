@@ -1,7 +1,7 @@
 {
   "name": "project-su",
   "jest": {
-    "verbose": true,
+    "verbose": false,
     "collectCoverage": true,
     "coverageThreshold": {
       "global": {
@@ -16,29 +16,30 @@
       "jest-junit"
     ]
   },
-  "jest-junit":{
+  "jest-junit": {
     "output": "./test-results/junit/jest-junit.xml"
   },
-  "version": "0.1.0-alpha.5",
+  "version": "0.1.0-alpha.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot=true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "cypress run",
-    "e2e:chrome": "cypress run --browser chrome",
-    "e2e:record": "cypress run --record --group all-tests",
-    "e2e:record:parallel": "cypress run --record --parallel --group all-tests",
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
-    "cy:run": "cypress run",
-    "cy:run:record": "cypress run --record --group all-tests",
     "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "e2e": "cypress run",
+    "cy:chrome": "cypress run --browser chrome",
+    "cy:record": "cypress run --record --group all-tests",
+    "cy:record:parallel": "cypress run --record --parallel --group all-tests",
+    "e2e:ci": "start-server-and-test start http://localhost:4200 cy:record",
     "test:watch": "ng test --watch",
     "test:cov": "ng test --ci --runInBand --reporters=default --reporters=jest-junit --coverage --coverageReporters=text-lcov | coveralls",
     "test:report": "ng test --ci --runInBand --reporters=default --reporters=jest-junit",
-    "test:summary": "ng test --coverage --coverageReporters=text-summary"
+    "test:summary": "ng test --ci --runInBand",
+    "e2e:experiment": "start-server-and-test start http://localhost:4200 cy:run"
   },
   "author": "al3j4ndr1x",
   "license": "MIT",
@@ -52,38 +53,40 @@
     "@angular/forms": "^8.1.1",
     "@angular/platform-browser": "^8.1.1",
     "@angular/platform-browser-dynamic": "^8.1.1",
-    "@angular/pwa": "^0.800.6",
+    "@angular/pwa": "^0.801.1",
     "@angular/router": "^8.1.1",
     "@angular/service-worker": "^8.1.1",
     "@nebular/eva-icons": "^4.1.1",
     "@nebular/theme": "^4.1.1",
     "eva-icons": "^1.1.1",
     "rxjs": "^6.5.2",
-    "tslib": "^1.9.0",
+    "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-builders/jest": "^8.0.4",
-    "@angular-devkit/build-angular": "^0.800.6",
+    "@angular-devkit/build-angular": "^0.801.1",
     "@angular/cli": "^8.1.1",
     "@angular/compiler-cli": "^8.1.1",
     "@angular/language-service": "^8.1.1",
     "@types/chance": "^1.0.5",
-    "@types/jasmine": "~3.3.8",
-    "@types/jasminewd2": "~2.0.3",
+    "@types/jasmine": "~3.3.13",
+    "@types/jasminewd2": "~2.0.6",
     "@types/jest": "^24.0.15",
-    "@types/node": "~8.9.4",
+    "@types/node": "~12.6.2",
     "chance": "^1.0.18",
-    "codelyzer": "^5.0.0",
-    "coveralls": "^3.0.4",
+    "codelyzer": "^5.1.0",
+    "coveralls": "^3.0.5",
     "cypress": "^3.4.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^24.8.0",
     "jest-junit": "^6.4.0",
-    "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "protractor": "~5.4.2",
+    "start-server-and-test": "^1.9.1",
+    "ts-jest": "^24.0.2",
+    "ts-node": "~8.3.0",
+    "tslint": "~5.18.0",
+    "typescript": "^3.4.5"
   }
 }
