@@ -63,7 +63,9 @@ jobs: # a collection of steps
       #     destination: jest
       - run:
           name: Running Jest and collect Coverage reports
-          command: npm run test:cov
+          command: |
+            mkdir -p ./coverage
+            npm run test:cov
       - store_test_results:
           path: ./coverage
       - store_artifacts:
