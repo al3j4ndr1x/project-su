@@ -43,11 +43,11 @@ jobs: # a collection of steps
       # start server before starting tests
       - run:
           name: Starting server before starting tests
-          command: npm run start
+          command: npm start # & wait-on http://localhost:4200
           background: true
       - run:
           name: Running and recording Cypress end-to-end tests
-          command: npm run e2e:record
+          command: npm run e2e:ci
       - run:
           name: Running Jest and Collect Coverage Reports with JUnit as reporter
           command: |
