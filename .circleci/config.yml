@@ -38,6 +38,7 @@ jobs: # a collection of steps
           key: v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           # cache NPM modules and the folder with the Cypress binary
           paths:
+            - /node_modules
             - ~/.npm
             - ~/.cache
       # start server before starting tests
