@@ -60,6 +60,11 @@ jobs: # a collection of steps
           path: ./test-results
       - store_artifacts:
           path: ./test-results/junit
+      - run:
+          name: Finally this is the working directory
+          command: |
+            ls -al
+            echo '^^^That should look familiar^^^'
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
