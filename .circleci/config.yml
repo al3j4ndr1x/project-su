@@ -41,10 +41,10 @@ jobs: # a collection of steps
             - ~/.npm
             - ~/.cache
       # start server before starting tests
-      - run:
-          name: Starting server before starting tests
-          command: npm start # & wait-on http://localhost:4200
-          background: true
+      #- run:
+      #    name: Starting server before starting tests
+      #    command: npm start # & wait-on http://localhost:4200
+      #    background: true
       - run:
           name: Running and recording Cypress end-to-end tests
           command: npm run e2e:ci
