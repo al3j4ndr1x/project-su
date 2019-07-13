@@ -1,7 +1,7 @@
 {
   "name": "project-su",
   "jest": {
-    "verbose": false,
+    "verbose": true,
     "collectCoverage": true,
     "coverageThreshold": {
       "global": {
@@ -36,10 +36,11 @@
     "cy:record:parallel": "cypress run --record --parallel --group all-tests",
     "e2e:ci": "start-server-and-test start http://localhost:4200 cy:record",
     "test:watch": "ng test --watch",
-    "test:cov": "ng test --ci --runInBand --bail --colors --coverage --reporters=default --coverageReporters=text-lcov | coveralls",
+    "test:cov": "ng test --ci --runInBand --bail --colors --coverage --reporters=default && coveralls < coverage/lcov.info",
     "test:report": "ng test --ci --runInBand --reporters=default --reporters=jest-junit",
     "test:summary": "ng test --ci --runInBand",
-    "test:exper": "ng test --ci --runInBand --coverage --bail --colors --reporters=default --coverageReporters=text-lcov| coveralls"
+    "test:exper": "ng test --ci --runInBand --collectCoverage --bail --colors --reporters=default && coveralls < coverage/lcov.info",
+    "test:coveralls": "ng test --ci --runInBand --bail --colors --collectCoverage --reporters=default --coverageReporters=text-lcov | coveralls"
   },
   "author": "al3j4ndr1x",
   "license": "MIT",
