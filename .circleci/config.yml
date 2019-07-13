@@ -23,9 +23,9 @@ jobs: # a collection of steps
           name: Running in a Unique Container
           command: |
             node -v
-      - run:
-          name: Updating npm
-          command: 'sudo npm install -g npm@latest'
+      # - run:
+      #     name: Updating npm
+      #     command: 'sudo npm install -g npm@latest'
 
       - restore_cache: # special step to restore the dependency cache
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
@@ -46,16 +46,16 @@ jobs: # a collection of steps
           # cache NPM modules and the folder with the Cypress binary
           paths:
             - ./node_modules
-            - ~/.npm
-            - ~/.cache
+            - ./.npm
+            - ./.cache
           key: v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
           root: ~/repo
           paths:
             - .
-            - ./.npm
-            - ./.cache
+            #- ./.npm
+            #- ./.cache
 
   test:
     executor: default
