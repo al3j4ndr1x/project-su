@@ -1,13 +1,15 @@
 # Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
 version: 2.1 # use CircleCI 2.1
+defaults: &defaults
+  working_directory: ~/repo
+  docker: # run the steps with Docker
+    - image: circleci/node:10-browsers
+      environment:
+      ## this enables colors in the output
+        TERM: xterm
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    docker: # run the steps with Docker
-      - image: circleci/node:10-browsers
-        environment:
-          ## this enables colors in the output
-          TERM: xterm
-    working_directory: ~/repo
+    <<: *defaults
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
@@ -22,32 +24,60 @@ jobs: # a collection of steps
       - run:
           name: Updating npm
           command: 'sudo npm install -g npm@latest'
+
       - restore_cache: # special step to restore the dependency cache
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - v1-deps-{{ .Branch }}
-            - v1-deps
+            - v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ .Branch }}
+            - v1-dependencies-
+
       - run:
           name: Installing Dependencies
           command: npm ci
+
+      - run:
+          name: Pruning unnecessary files from ./node_modules
+          command: 'curl -sfL https://install.goreleaser.com/github.com/tj/node-prune.sh | sh ./bin/node-prune'
+
       - run:
           name: Verifying Cypress
           command: npm run cy:verify
+
       - save_cache: # special step to save the dependency cache
-          key: v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           # cache NPM modules and the folder with the Cypress binary
           paths:
             - ./node_modules
-            - ~/.npm
-            - ~/.cache
+            #- ~/.npm
+            #- ~/.cache
+          key: v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
       # start server before starting tests
       #- run:
       #    name: Starting server before starting tests
       #    command: npm start # & wait-on http://localhost:4200
       #    background: true
       - run:
-          name: Running end-to-end tests and recording with Cypress
+          name: Running Unit Tests with Jest and collect coverage reports to Coveralls
+          command: npm run test:cov
+
+      - store_test_results:
+          path: ./coverage
+      - store_artifacts:
+          path: ./coverage
+          destination: coverage
+
+      - run:
+          name: Running end-to-end Tests and recording with Cypress
           command: npm run e2e:ci
       # - run:
       #     name: Running Jest and Collect Coverage Reports with JUnit as reporter
@@ -61,32 +91,42 @@ jobs: # a collection of steps
       # - store_artifacts:
       #     path: ./test-results/junit
       #     destination: jest
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
       - run:
-          name: Running Jest and collect Coverage reports
-          command: |
-            mkdir -p ./coverage
-            npm run test:cov
-      - store_test_results:
-          path: ./coverage
-      - store_artifacts:
-          path: ./coverage
-          destination: coverage
-      - run:
-          name: Finally working directory output
+          name: Finally the working directory output
           command: |
             ls -al
             echo '^^^That should look familiar^^^'
-
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: WIP Deploying
+          command: echo 'Hi Deployment'
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
   version: 2
-  build_and_test:
+  build_test_and_deploy:
     jobs:
-      - build
-        #  filters:  # using regex filters requires the entire branch to match
-        #    branches:
-        #      only:  # only branches matching the below regex filters will run
-        #        - master
-      #- test:
-      #    requires:
-      #      - build
+      - build:
+          filters:
+            branches:
+              ignore:
+                - /feature-.*/
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:  # using regex filters requires the entire branch to match
+            branches:
+              only:  # only branches matching the below regex filters will run
+                - master
+
