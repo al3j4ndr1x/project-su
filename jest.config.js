@@ -6,5 +6,5 @@ module.exports = {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    reporters: ["default", "jest-junit"], // To collect Jest metadata
+    //reporters: ["default", "jest-junit"], // To collect Jest metadata
   };

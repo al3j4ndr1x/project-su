@@ -1,3 +1,11 @@
+<a name="0.1.0-alpha.7"></a>
+# [0.1.0-alpha.7](#) (2019-07-12)
+
+### build
+
+- **build**: ([e37fc64](e37fc64)) add dependency husky git hook tool.
+- **ci:** ([a648d77](a648d77)) add jest coverage and remove junit in config.
+
 <a name="0.1.0-alpha.6"></a>
 # [0.1.0-alpha.6](#) (2019-07-11)
 
@@ -9,7 +17,7 @@
 
 ### Testing
 
-- **test:**: ([b495d1d](b495d1d)) add a test that will fail and code test instead of it.
+- **test:** ([b495d1d](b495d1d)) add a test that will fail and code test instead of it.
 
 ### Documentation
 

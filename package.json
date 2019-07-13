@@ -1,7 +1,7 @@
 {
   "name": "project-su",
   "jest": {
-    "verbose": false,
+    "verbose": true,
     "collectCoverage": true,
     "coverageThreshold": {
       "global": {
@@ -19,7 +19,7 @@
   "jest-junit": {
     "output": "./test-results/junit/jest-junit.xml"
   },
-  "version": "0.1.0-alpha.6",
+  "version": "0.1.0-alpha.7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot=true",
@@ -36,10 +36,11 @@
     "cy:record:parallel": "cypress run --record --parallel --group all-tests",
     "e2e:ci": "start-server-and-test start http://localhost:4200 cy:record",
     "test:watch": "ng test --watch",
-    "test:cov": "ng test --ci --runInBand --reporters=default --reporters=jest-junit --coverage --coverageReporters=text-lcov | coveralls",
+    "test:cov": "ng test --ci --runInBand --bail --colors --coverage --reporters=default && coveralls < coverage/lcov.info",
     "test:report": "ng test --ci --runInBand --reporters=default --reporters=jest-junit",
     "test:summary": "ng test --ci --runInBand",
-    "e2e:experiment": "start-server-and-test start http://localhost:4200 cy:run"
+    "test:exper": "ng test --ci --runInBand --collectCoverage --bail --colors --reporters=default && coveralls < coverage/lcov.info",
+    "test:coveralls": "ng test --ci --runInBand --bail --colors --collectCoverage --reporters=default --coverageReporters=text-lcov | coveralls"
   },
   "author": "al3j4ndr1x",
   "license": "MIT",
@@ -78,6 +79,7 @@
     "codelyzer": "^5.1.0",
     "coveralls": "^3.0.5",
     "cypress": "^3.4.0",
+    "husky": "^3.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^24.8.0",
@@ -88,5 +90,11 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "^3.4.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   }
 }
