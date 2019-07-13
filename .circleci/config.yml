@@ -54,8 +54,8 @@ jobs: # a collection of steps
           root: ~/repo
           paths:
             - .
-            - ~/.npm
-            - ~/.cache
+            - ./.npm
+            - ./.cache
 
   test:
     executor: default
