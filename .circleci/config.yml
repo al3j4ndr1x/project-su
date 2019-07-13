@@ -37,10 +37,6 @@ jobs: # a collection of steps
           command: npm ci
 
       - run:
-          name: Pruning unnecessary files from ./node_modules
-          command: 'curl -sfL https://install.goreleaser.com/github.com/tj/node-prune.sh | sh ./bin/node-prune'
-
-      - run:
           name: Verifying Cypress
           command: npm run cy:verify
 
