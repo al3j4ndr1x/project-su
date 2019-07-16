@@ -23,9 +23,9 @@ jobs: # a collection of steps
           name: Running in a Unique Container
           command: |
             node -v
-      # - run:
-      #     name: Updating npm
-      #     command: 'sudo npm install -g npm@latest'
+      - run:
+          name: Updating npm at latest
+          command: 'sudo npm install -g npm@latest'
 
       - restore_cache: # special step to restore the dependency cache
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
@@ -46,15 +46,20 @@ jobs: # a collection of steps
           # cache NPM modules and the folder with the Cypress binary
           paths:
             - node_modules
-            - ./.npm
-            - ./.cache
+            - ~/.npm
+            - ~/.cache
+            - ~/usr/local/lib/node_modules
           key: v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
           root: /home/circleci
           paths:
             - .
-
+      - run:
+          name: The root directory
+          command: |
+            ls -al ~/
+            echo '^^^That should look familiar^^^'
   test:
     executor: default
     steps:
@@ -106,9 +111,9 @@ jobs: # a collection of steps
       - attach_workspace:
           at: /home/circleci
       - run:
-          name: WIP Deploying
+          name: Deploy Master to Firebase
           command: echo 'Hi Deployment'
-          #command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+          #command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
   version: 2
