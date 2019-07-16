@@ -30,9 +30,9 @@ jobs: # a collection of steps
       - restore_cache: # special step to restore the dependency cache
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           keys:
-            - v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - v1-dependencies-{{ .Branch }}
-            - v1-dependencies-
+            - v2-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v2-dependencies-{{ .Branch }}
+            - v2-dependencies-
 
       - run:
           name: Installing Dependencies
@@ -49,16 +49,16 @@ jobs: # a collection of steps
             - ~/.npm
             - ~/.cache
             - ~/usr/local/lib/node_modules
-          key: v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: v2-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
           root: /home/circleci
           paths:
             - .
       - run:
-          name: The root directory
+          name: The node modules directory
           command: |
-            ls -al ~/
+            ls -al ~/usr/local/lib/node_modules
             echo '^^^That should look familiar^^^'
   test:
     executor: default
