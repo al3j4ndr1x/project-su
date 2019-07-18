@@ -56,9 +56,9 @@ jobs: # a collection of steps
           paths:
             - .
       - run:
-          name: The node modules directory
+          name: Finally the working directory after build steps
           command: |
-            ls -al /usr/local/lib/node_modules
+            ls -al
             echo '^^^That should look familiar^^^'
   test:
     executor: default
@@ -101,7 +101,7 @@ jobs: # a collection of steps
           paths: .
 
       - run:
-          name: Finally the working directory output
+          name: Finally the working directory after test steps
           command: |
             ls -al
             echo '^^^That should look familiar^^^'
@@ -114,6 +114,7 @@ jobs: # a collection of steps
           name: Deploy Master to Firebase
           command: echo 'Hi Deployment'
           #command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
   version: 2
@@ -134,4 +135,3 @@ workflows:
             branches:
               only:  # only branches matching the below regex filters will run
                 - master
-
