@@ -1,13 +1,17 @@
 # Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
 version: 2.1 # use CircleCI 2.1
-jobs: # a collection of steps
-  build: # runs not using Workflows must have a `build` job as entry point
+
+executors:
+  default:
+    working_directory: ~/repo
     docker: # run the steps with Docker
       - image: circleci/node:10-browsers
         environment:
           ## this enables colors in the output
           TERM: xterm
-    working_directory: ~/repo
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+    executor: default
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
@@ -20,34 +24,63 @@ jobs: # a collection of steps
           command: |
             node -v
       - run:
-          name: Updating npm
+          name: Updating npm at latest
           command: 'sudo npm install -g npm@latest'
+
       - restore_cache: # special step to restore the dependency cache
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - v1-deps-{{ .Branch }}
-            - v1-deps
+            - v2-node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v2-node-dependencies-{{ .Branch }}
+            - v2-node-dependencies-
+
       - run:
           name: Installing Dependencies
           command: npm ci
+
       - run:
           name: Verifying Cypress
           command: npm run cy:verify
+
       - save_cache: # special step to save the dependency cache
-          key: v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           # cache NPM modules and the folder with the Cypress binary
           paths:
-            - ./node_modules
+            - node_modules
             - ~/.npm
             - ~/.cache
+          key: v2-node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - .
+      - run:
+          name: Finally the working directory after build steps
+          command: |
+            ls -al
+            echo '^^^That should look familiar^^^'
+  test:
+    executor: default
+    steps:
+      - attach_workspace:
+          at: /home/circleci
       # start server before starting tests
       #- run:
       #    name: Starting server before starting tests
       #    command: npm start # & wait-on http://localhost:4200
       #    background: true
       - run:
-          name: Running end-to-end tests and recording with Cypress
+          name: Running Unit Tests with Jest and collect coverage reports to Coveralls
+          command: npm run test:cov
+
+      - store_test_results:
+          path: ./coverage
+      - store_artifacts:
+          path: ./coverage
+          destination: coverage
+
+      - run:
+          name: Running end-to-end Tests and recording with Cypress
           command: npm run e2e:ci
       # - run:
       #     name: Running Jest and Collect Coverage Reports with JUnit as reporter
@@ -61,32 +94,43 @@ jobs: # a collection of steps
       # - store_artifacts:
       #     path: ./test-results/junit
       #     destination: jest
+
+      - persist_to_workspace:
+          root: /home/circleci
+          paths: .
+
       - run:
-          name: Running Jest and collect Coverage reports
-          command: |
-            mkdir -p ./coverage
-            npm run test:cov
-      - store_test_results:
-          path: ./coverage
-      - store_artifacts:
-          path: ./coverage
-          destination: coverage
-      - run:
-          name: Finally working directory output
+          name: Finally the working directory after test steps
           command: |
             ls -al
             echo '^^^That should look familiar^^^'
+  deploy:
+    executor: default
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Deploy Master to Firebase
+          command: echo 'Hi Deployment'
+          #command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
   version: 2
-  build_and_test:
+  build_test_and_deploy:
     jobs:
-      - build
-        #  filters:  # using regex filters requires the entire branch to match
-        #    branches:
-        #      only:  # only branches matching the below regex filters will run
-        #        - master
-      #- test:
-      #    requires:
-      #      - build
+      - build:
+          filters:
+            branches:
+              ignore:
+                - /feature-.*/
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:  # using regex filters requires the entire branch to match
+            branches:
+              only:  # only branches matching the below regex filters will run
+                - master
