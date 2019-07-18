@@ -45,11 +45,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Semantic Versioning
-SEMANTIC-VERSIONING.md
+# Semantic Versioning documentation
+#/docs/SEMANTIC-VERSIONING.md
 
-# git flow Workflow
-WORKFLOW.md
+# git flow documentation
+#/docs/GITFLOW.md
 
 # Coveralls config
 .coveralls.yml
