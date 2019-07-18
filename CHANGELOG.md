@@ -1,3 +1,10 @@
+<a name="0.1.0-beta.0"></a>
+# [0.1.0-beta.0](#) (2019-07-18)
+
+### build
+
+- **core:** Closes #37. Prepare project as a template.
+
 <a name="0.1.0-alpha.8"></a>
 # [0.1.0-alpha.8](#) (2019-07-13)
 
