@@ -48,7 +48,6 @@ jobs: # a collection of steps
             - node_modules
             - ~/.npm
             - ~/.cache
-            - /usr/local/lib/node_modules
           key: v1-node-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
