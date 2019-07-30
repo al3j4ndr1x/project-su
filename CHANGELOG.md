@@ -1,3 +1,10 @@
+<a name="0.1.0-beta.1"></a>
+# [0.1.0-beta.1](#) (2019-07-30)
+
+### build
+
+- **core:** update dependencies.
+
 <a name="0.1.0-beta.0"></a>
 # [0.1.0-beta.0](#) (2019-07-18)
 
